@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root{
+    --bg-light: #F2F0E8;
+    --bg-dark: #282923;
+    --bg-dark2: #444444;
+
+    --text-dark:#282923;
+    --text-light: white;
+
+    --section-padding-top: 80px;
+    --filter-light: brightness(0) saturate(100%) invert(92%) sepia(13%) saturate(193%) hue-rotate(336deg) brightness(107%) contrast(90%);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;    
+    font-family: "Montserrat", sans-serif;        
+}
+html,body{
+    background: var(--bg-light);
+}
+main{
+    position: relative;
+}
+section{
+    min-height: 700px;
+    width: 100%;    
+}
+section.bgDark{
+    background: var(--bg-dark);
+}
+section.bgLight{
+    background: var(--bg-light);
+}
+
+.sectionTitle{
+    text-transform: uppercase;
+    font-size: clamp(3rem, 5vw, 6rem);    
+    font-weight: 700;
+    font-family: "Bebas Neue", sans-serif
+}
+.sectionDescription{
+    max-width: 500px;
+    font-size: clamp(1rem, 5vw, 1.2rem);
+}
+hr{
+    margin: 25px 0;
+}
+
+section .colorDark{
+    color: var(--text-dark);
+}
+section .colorLight{
+    color: var(--text-light);
+}
+/* whats app icon */
+.whatsAppIcon{
+    position: absolute;
+    bottom: 80px;
+    right: 80px;        
+    z-index: 10;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 12px;
+    border: 1px solid white;    
+    border-radius: 55px;
+    cursor: pointer;
+
+    width: 50px; /* Initial fixed width */
+    height: 50px; /* Optional: if you want a fixed height */    
+
+    transition: width .4s cubic-bezier(0.4, 0, 0.2, 1), 
+                padding .4s cubic-bezier(0.4, 0, 0.2, 1),
+                height .4s cubic-bezier(0.4, 0, 0.2, 1),
+                all .4s cubic-bezier(0.4, 0, 0.2, 1);                
+
+    overflow: hidden; /* Optional: if there's text/icons inside */
+}
+.whatsAppIcon p{
+    opacity: 0;
+    color: var(--bg-light);
+    transition: all .4s cubic-bezier(0.4, 0, 0.2, 1);    
+    transition-delay: .3s;  
+    white-space: nowrap;          
+}
+.whatsAppIcon:hover{
+    width: 250px; 
+    height: 70px;       
+    padding: 10px;
+}
+.whatsAppIcon:hover p{
+    opacity: 1;
+}
+.whatsAppIcon img{
+    filter: var(--filter-light);
+}
+/* whats app icon ends*/
+
+
+/* hero banner style */
+.heroBanner{
+    position: relative;
+    height: 99.5vh;
+    width: 100%;    
+}
+.heroBanner img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;    
+}
+.heroBanner .bgLayer{    
+    position: absolute;
+    bottom: 0;
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    /* background: linear-gradient(0deg, rgb(36, 36, 33) 0%, rgba(36, 36, 33, 0) 100%); */
+    background: var(--bg-dark);
+    opacity: .3;
+}
+.heroBannerContent{
+    z-index: 3;
+    position: absolute;
+    bottom: 80px;
+    left: 0;
+    width: 100%;
+    padding: 0 50px;
+    background: transparent;
+}
+.heroBannerContent-center{
+    position: absolute;
+    top: 40%;    
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 15;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.heroBannerContent-center .logo{
+    height: 200px;
+    width: 200px;
+    object-fit: contain;
+}
