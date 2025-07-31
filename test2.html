@@ -3,185 +3,319 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./style/index.css">
-    <link rel="stylesheet" href="./style/home.css">
-    <link rel="stylesheet" href="./style/marque.css">
+    <title>Review Card Marquee</title>
+    <link rel="stylesheet" href="style.css">
 
-    <!-- plugins -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+    <style>
+    :root {
+      --color-surface: rgba(255, 255, 253, 1);
+      --color-text: rgba(19, 52, 59, 1);
+      --color-text-secondary: rgba(98, 108, 113, 1);
+      --color-primary: rgba(33, 128, 141, 1);
+      --color-primary-hover: rgba(29, 116, 128, 1);
+      --color-card-border: rgba(94, 82, 64, 0.12);
+      --color-border: rgba(94, 82, 64, 0.2);
+      --radius-lg: 12px;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+      --font-size-sm: 12px;
+      --font-size-base: 14px;
+      --font-size-lg: 16px;
+      --font-size-xl: 18px;
+      --font-size-2xl: 20px;
+      --font-weight-semibold: 550;
+      --font-weight-bold: 600;
+      --line-height-normal: 1.5;
+      --space-2: 2px;
+      --space-4: 4px;
+      --space-12: 12px;
+      --space-16: 16px;
+      --space-20: 20px;
+    }
+
+html {
+  font-size: var(--font-size-base);
+  font-family: "Inter", sans-serif;
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Marquee container and animation */
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  mask: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+  -webkit-mask: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+}
+
+.marquee-track {
+  display: flex;
+  gap: var(--space-20);
+  animation: marquee 60s linear infinite;
+  width: max-content;
+  will-change: transform;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused !important;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Review card styling */
+.review-card {
+  flex: 0 0 auto;
+  width: 320px;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-20);
+  border: 1px solid var(--color-card-border);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  cursor: pointer;
+  transform: translateY(0) scale(1);
+}
+
+.review-card:hover {
+  transform: translateY(-8px) scale(1.08) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+  border-color: var(--color-primary) !important;
+  z-index: 100 !important;
+  background: var(--color-surface) !important;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  margin-bottom: var(--space-16);
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 9999px;
+  background: var(--color-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-lg);
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.review-card:hover .avatar {
+  background: var(--color-primary-hover);
+  transform: scale(1.1);
+}
+
+.customer-info {
+  flex: 1;
+}
+
+.customer-name {
+  margin: 0 0 var(--space-4) 0;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  transition: color 0.3s ease;
+}
+
+.review-card:hover .customer-name {
+  color: var(--color-primary);
+}
+
+.rating {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.star {
+  color: #fbbf24; /* Gold color */
+  font-size: var(--font-size-lg);
+  line-height: 1;
+  transition: all 0.3s ease;
+}
+
+.review-card:hover .star {
+  color: #f59e0b;
+  transform: scale(1.1);
+}
+
+.star.empty {
+  color: var(--color-border);
+}
+
+.review-card:hover .star.empty {
+  color: var(--color-text-secondary);
+}
+
+.review-text {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-secondary);
+  margin: 0;
+  font-style: italic;
+  transition: color 0.3s ease;
+}
+
+.review-card:hover .review-text {
+  color: var(--color-text);
+}
+
+.review-text::before,
+.review-text::after {
+  content: '"';
+  font-size: var(--font-size-2xl);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+}
+
+.review-text::before {
+  margin-right: var(--space-4);
+}
+
+.review-text::after {
+  margin-left: var(--space-4);
+}
+
+.review-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), rgba(45, 166, 178, 1));
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.review-card:hover::before {
+  opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .review-card {
+    width: 280px;
+    padding: var(--space-16);
+  }
+
+  .marquee-track {
+    gap: var(--space-16);
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    font-size: var(--font-size-base);
+  }
+
+  .customer-name {
+    font-size: var(--font-size-base);
+  }
+
+  .review-card:hover {
+    transform: translateY(-4px) scale(1.04) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .review-card {
+    width: 240px;
+    padding: var(--space-12);
+  }
+
+  .card-header {
+    gap: var(--space-8);
+    margin-bottom: var(--space-12);
+  }
+
+  .avatar {
+    width: 36px;
+    height: 36px;
+    font-size: var(--font-size-sm);
+  }
+
+  .customer-name {
+    font-size: var(--font-size-sm);
+  }
+
+  .star {
+    font-size: var(--font-size-base);
+  }
+
+  .review-text {
+    font-size: var(--font-size-sm);
+  }
+
+  .review-card:hover {
+    transform: translateY(-2px) scale(1.02) !important;
+  }
+}
+
+/* Accessibility: Reduce motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation-duration: 120s;
+  }
+
+  .review-card,
+  .avatar,
+  .customer-name,
+  .star,
+  .review-text {
+    transition: none;
+  }
+
+  .review-card:hover {
+    transform: none !important;
+  }
+}
+
+/* Focus state for keyboard navigation */
+.review-card:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  transform: translateY(-8px) scale(1.08);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border-color: var(--color-primary);
+  z-index: 100;
+}
+    </style>
 </head>
+
 <body>
-    
-    <nav>
-        <div class="navigation">
-
-        </div>
-    </nav>
-    <main>        
-        <div class="whatsAppIcon">
-            <img src="./assets/icons/whatsapp.png" alt="what-app-icon" height="50px" width="50px">
-            <p>Connect with us in<br> WhatsApp</p>
-        </div>
-
-        <section id="hero-banner" class="bgDark">
-            <div class="heroBanner">
-                <div class="bgLayer"></div>
-                <img src="./assets/09.jpg" alt="hero-banner-image" class="parallax-image">
-                <div class="heroBannerContent-center">
-                    <img src="./assets/icons/logo.png" alt="logo" class="logo">
-                    <p class="sectionTitle colorLight">AltiEdge</title>
-                </div>
-                <div class="heroBannerContent">
-                    <!-- <p class="sectionTitle colorLight">AltiEdge</title> -->
-                    <div class="underline"></div>
-                    <p class="sectionDescription colorLight">
-                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <div class="aboutSection">
-                <div class="aboutSectionImages">
-                    <div class="image1">
-                        <!-- <img src="assets/11.jpg" alt=""> -->
-                        <img src="assets/07.jpg" alt="about-image">
-
-                        <div class="image2">
-                            <img src="/assets/10.jpg" alt="about-image">
-                        </div>
-                        <div class="image3">
-                            <img src="/assets/08.jpg" alt="about-image">
-                        </div>
-                    </div>                    
-                </div>
-                <div class="text-wrapper">
-                    <div class="aboutSectionParagraph1">
-                        <div>
-                            <h2>&#43; <span></span> About us</h2>
-                            <p>AltiEdge was born from respect for the mountains and a mission to prepare climbers with science-backed training.</p>
-                        </div>
-                    </div>
-                    <div class="aboutSectionParagraph2">
-                        <div>
-                            <p>
-                                We set out to build a mountaineering mentorship platform driven by our passion for the mountains and grounded in training science—led by seasoned climbers and rooted in resilience, culture, and respect for the environment.
-                            </p>
-                            <div class="btn-primary">find out more</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <div class="usp">
-                <div class="header-content">
-                    <div class="title">Featured tours <span>&#43; USP</span></div>
-                    <div class="description">- Take the first step towards your next life-affirming adventure.</div>
-                </div>
-                <div class="swiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img src="assets/01.jpg" alt="ups-image" class="img-1">
-                            <img src="assets/06.jpg" alt="ups-image" class="img-2">
-                            <div class="slide-heading">
-                                Majestic <br>Heights
-                                <p>&#43; Mount Everest</p>
-                            </div>
-                            <div class="slide-desc">
-                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                                <div class="btn-primary">Know More</div>
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <img src="assets/02.jpg" alt="ups-image" class="img-1">
-                            <img src="assets/05.jpg" alt="ups-image" class="img-2">
-                            <div class="slide-heading">
-                                Snowy <br>Summit
-                                <p>&#43; Mount Kilimanjaro</p>
-                            </div>
-                            <div class="slide-desc">
-                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                                <div class="btn-primary">Know More</div>
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <img src="assets/03.jpg" alt="ups-image" class="img-1">
-                            <img src="assets/04.jpg" alt="ups-image" class="img-2">
-                            <div class="slide-heading">
-                                Icy <br>Peaks
-                                <p>&#43; Mount Elbrus</p>
-                            </div>
-                            <div class="slide-desc">
-                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                                <div class="btn-primary">Know More</div>
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <img src="assets/04.jpg" alt="ups-image" class="img-1">
-                            <img src="assets/03.jpg" alt="ups-image" class="img-2">
-                            <div class="slide-heading">
-                                Rugged <br>Giant
-                                <p>&#43; Denali</p>
-                            </div>
-                            <div class="slide-desc">
-                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                                <div class="btn-primary">Know More</div>
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <img src="assets/05.jpg" alt="ups-image" class="img-1">
-                            <img src="assets/02.jpg" alt="ups-image" class="img-2">
-                            <div class="slide-heading">
-                                Andean <br>Majesty
-                                <p>&#43; Aconcagua</p>
-                            </div>
-                            <div class="slide-desc">
-                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                                <div class="btn-primary">Know More</div>
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <img src="assets/06.jpg" alt="ups-image" class="img-1">
-                            <img src="assets/01.jpg" alt="ups-image" class="img-2">
-                            <div class="slide-heading">
-                                Frozen <br>Frontier
-                                <p>&#43; Mount Vinson</p>
-                            </div>
-                            <div class="slide-desc">
-                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                                <div class="btn-primary">Know More</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- The thumb-like scrollbar -->                                        
-                    <div class="swiper-controller-wrapper">
-                        <div class="swiper-navigation">
-                            <div class="swiper-button-prev "></div>
-                            <div class="swiper-button-next"></div>
-                        </div>                        
-                        <div class="swiper-scrollbar"></div>
-                    </div>
-                </div>
-                
-            </div>
-        </section>
-
-
-        <section>
-            <div class="testimonialSection">
-                <div class="header-content">
-                    <div class="title">Featured tours <span>&#43; USP</span></div>
-                    <div class="description">- Take the first step towards your next life-affirming adventure.</div>
-                </div>
+    <main class="main-content">
+        <section class="reviews-section">
+            <div class="container">
+                <h2 class="section-title">What Our Customers Say</h2>
+                <p class="section-subtitle">Discover why thousands of customers trust us with their projects</p>
                 
                 <div class="marquee-container">
                     <div class="marquee-track">
@@ -446,13 +580,61 @@
             </div>
         </section>
     </main>
-    <footer>
-        <div class="footer">
+    <script>
+        // Review Card Marquee - Pure CSS Implementation
+// This file provides optional enhancements but the core functionality is CSS-based
 
-        </div>
-    </footer>
+document.addEventListener('DOMContentLoaded', function() {
+    // Optional: Add keyboard navigation support for accessibility
+    const reviewCards = document.querySelectorAll('.review-card');
+    
+    reviewCards.forEach((card, index) => {
+        // Make cards focusable for keyboard navigation
+        card.setAttribute('tabindex', '0');
+        
+        // Add keyboard event listeners
+        card.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                // Optional: Could trigger a modal or expanded view
+                console.log(`Review card ${index + 1} activated:`, card.querySelector('.customer-name').textContent);
+            }
+        });
+    });
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>  
-    <script src="./script/app.js"></script>
+    // Optional: Performance optimization - pause animation when not visible
+    const marqueeContainer = document.querySelector('.marquee-container');
+    const marqueeTrack = document.querySelector('.marquee-track');
+    
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    marqueeTrack.style.animationPlayState = 'running';
+                } else {
+                    marqueeTrack.style.animationPlayState = 'paused';
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        observer.observe(marqueeContainer);
+    }
+
+    // Optional: Add smooth scrolling behavior for reduced motion users
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        marqueeTrack.style.animationDuration = '120s';
+    }
+
+    // Optional: Log when hover events occur (for analytics if needed)
+    reviewCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            // Optional: Track hover interactions
+            console.log('Card hovered:', card.querySelector('.customer-name').textContent);
+        });
+    });
+});
+    </script>
 </body>
 </html>

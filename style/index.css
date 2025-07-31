@@ -12,7 +12,13 @@
     --section-padding-top: 80px;
     --filter-light: brightness(0) saturate(100%) invert(92%) sepia(13%) saturate(193%) hue-rotate(336deg) brightness(107%) contrast(90%);
 
-    --font-bold: "Bebas Neue", sans-serif;    
+    --font-bold: "Bebas Neue", sans-serif;  
+    --font-normal: "Montserrat", sans-serif;   
+    
+    --font-size1: clamp(2rem, 5vw, 5rem);
+    --font-size2: clamp(1.5rem, 5vw, 3.4rem);
+    --font-size3: clamp(1.2rem, 5vw, 2.2rem);
+    --font-size4: clamp(.9rem, 5vw, 1rem);
 }
 
 *{
@@ -47,7 +53,7 @@ section.bgLight{
 }
 .underline{
     margin: 25px 0;    
-    background-color: var(--text-dark2);
+    background-color: var(--text-light);
     height: 1px;
 }
 
@@ -135,123 +141,92 @@ section .colorLight{
     background: rgba(225,225,225, .2);
 }
 
-/* hero banner style */
-.heroBanner{
-    position: relative;
-    height: 99.5vh;
-    width: 100%;    
-    overflow: hidden;
-}
-.heroBanner img{
-    height: 100%;
-    width: 100%;
-    object-fit: cover;    
-}
-.heroBanner .bgLayer{    
-    position: absolute;
-    bottom: 0;
-    z-index: 2;
-    height: 100%;
-    width: 100%;
-    /* background: linear-gradient(0deg, rgb(36, 36, 33) 0%, rgba(36, 36, 33, 0) 100%); */
-    background: var(--bg-dark);    
-    opacity: .2;
-}
-.heroBannerContent{
-    z-index: 3;
-    position: absolute;
-    bottom: 80px;
-    left: 0;
-    width: 100%;
-    padding: 0 50px;
-    background: transparent;
-}
-.heroBannerContent-center{
-    position: absolute;
-    top: 40%;    
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 15;
+.header-content{
+    margin-bottom: 60px;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.header-content .title{
+    font-family: var(--font-bold);
+    font-size: var(--font-size1);
+    color: var(--text-dark);        
+    position: relative;
+}
+.header-content .title span{
+    position: absolute;
+    top: -30px;
+    left: 0;
+    font-size: 1.5rem;
+    font-family: var(--font-bold);
+}
+.header-content .description{
+    width: 450px;
+    text-align: right;
+}
+
+/* swiper js */
+.swiper{
+    width: 100%;
+    height: auto;
+    background: transparent;    
+    padding: 20px;    
+    overflow: visible !important;
+}
+.swiper .swiper-wrapper{
+    overflow: initial;
+}
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #333;
+    background: #eee;
+    border-radius: 4px;
+    user-select: none;
+}
+.swiper-scrollbar {    
+    height: 1px;
+    background: #e6e6e6;
+    border-radius: 3px;
+    position: relative !important;
+}
+.swiper-controller-wrapper{
+    position: absolute;
+    bottom: -90px;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 }
-.heroBannerContent-center .logo{
-    height: 200px;
-    width: 200px;
-    object-fit: contain;
+.swiper-controller-wrapper .swiper-navigation{
+    display: flex;
+    justify-content: space-between;
+    width: 150px;
 }
-
-
-/* about-section style*/
-.aboutSection{
-    min-height: 100vh;
-    width: 100%;
-    background: var(--bg-dark2);        
-    position: relative;    
+.swiper-button-next, .swiper-button-prev {
+    position: relative !important;
+    border: 1px solid var(--bg-dark2);
+    color: var(--bg-dark2) !important;
+    aspect-ratio: 1/1;
+    border-radius: 50%;    
+    height: 50px !important;
+    width: 50px !important;
 }
-.aboutSection .aboutSectionImages{
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    height: 80%;
-    min-width: 450px;
-    width: 50%;
+.swiper-button-next::after, .swiper-button-prev::after {
+    font-size: 18px !important;
 }
-.aboutSection .aboutSectionImages .image1{
-    height: 100%;
-    filter: brightness(.75);
-    position: relative;
-    overflow: hidden;
+.swiper-scrollbar-drag {
+    background: #007aff;
+    border-radius: 3px;
+    transition: background 0.2s;
 }
-.aboutSection .aboutSectionImages img{
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+.swiper {
+    cursor: grab;
 }
-
-.aboutSection .text-wrapper{
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    padding:0 80px;
-    transform: translateY(-50%);
+.swiper:active {
+    cursor: grabbing;
 }
-.aboutSection .aboutSectionParagraph1{    
-    z-index: 5;
-    width: 100%;           
-    margin-bottom: 75px;
-}
-.aboutSection .aboutSectionParagraph1 > div{
-    margin-left: 45%;
-    width: 600px;    
-}
-.aboutSection .aboutSectionParagraph1 h2{
-    font-family: var(--font-bold);
-    color: var(--text-light);
-    text-align: right;
-    margin-right: 25px;
-    margin-bottom: 18px;
-    font-weight: 300;
-}
-.aboutSection .aboutSectionParagraph1 p{
-    font-family: var(--font-bold);
-    font-size: clamp(1.5rem, 5vw, 3.4rem);
-    line-height: 1;      
-    color: var(--text-light);
-}
-.aboutSection .aboutSectionParagraph2{    
-    max-width: 1400px;
-    width: 100%;
-    margin: 0 auto;
-    z-index: 5;
-    width: 100%;           
-}
-.aboutSection .aboutSectionParagraph2 > div{
-    margin-left: auto;
-    width: 400px;
-}
-.aboutSection .aboutSectionParagraph2 p{     
-    color: var(--text-light);
-}
+/* swiper js end*/
