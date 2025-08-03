@@ -46,7 +46,7 @@
 
 /* about-section style*/
 .aboutSection{
-    min-height: 120vh;
+    min-height: 110vh;
     width: 100%;
     background: var(--bg-dark2);        
     position: relative;    
@@ -110,7 +110,7 @@
 }
 .aboutSection .aboutSectionParagraph2 > div{
     margin-left: auto;
-    width: 400px;
+    width: 450px;
 }
 .aboutSection .aboutSectionParagraph2 p{     
     color: var(--text-light);
@@ -231,13 +231,13 @@
 
 /* testimonial section */
 .testimonialSection{
-    background: var(--bg-dark2);
+    /* background: var(--bg-dark2); */
     /* height: clamp(600px, 25vw, 50vh); */
     height: 60vh;
     padding: 120px 0;
 
     display: grid;
-    grid-template-columns: .6fr 1fr;
+    grid-template-columns: .7fr 1fr;
     justify-content: center;
     align-items: center;
 }
@@ -245,6 +245,7 @@
     padding: 0 80px;
     align-items: start;
     flex-direction: column;
+    gap: 25px;
 }
 /* .testimonialSection .marquee-container{
     max-width: 1400px;

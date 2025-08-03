@@ -31,7 +31,7 @@ html,body{
     background: var(--bg-light);
 }
 section{
-    min-height: 700px;
+    /* min-height: 700px; */
     width: 100%;    
 }
 section.bgDark{
@@ -152,6 +152,7 @@ section .colorLight{
     font-size: var(--font-size1);
     color: var(--text-dark);        
     position: relative;
+    line-height: 1;
 }
 .header-content .title span{
     position: absolute;
@@ -161,7 +162,8 @@ section .colorLight{
     font-family: var(--font-bold);
 }
 .header-content .description{
-    width: 450px;
+    align-self: flex-end;
+    width: clamp(200px, 20vw, 450px);
     text-align: right;
 }
 

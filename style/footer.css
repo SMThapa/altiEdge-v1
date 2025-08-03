@@ -1,0 +1,23 @@
+footer{
+  position: relative;
+  height: 55vh;
+  background: var(--bg-dark2);
+  overflow: hidden;
+}
+footer .footer-background{
+  font-family: var(--font-bold);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);  
+  transform-origin: right bottom;
+  font-size: clamp(10vw, 39vw, 50vw);
+  white-space: nowrap;
+  opacity: 0.04; /* optional for a subtle effect */
+  pointer-events: none;
+  text-transform: uppercase;
+  color: var(--text-light);
+  vertical-align: bottom;
+  display: inline-block;
+  line-height: 1;
+}
