@@ -58,13 +58,13 @@ section.bgLight{
 }
 
 section .colorDark{
-    color: var(--text-dark);
+    color: var(--text-dark) !important;
 }
 section .colorDark2{
     color: var(--text-dark2);
 }
 section .colorLight{
-    color: var(--text-light);
+    color: var(--text-light) !important;
 }
 /* whats app icon */
 .whatsAppIcon{
