@@ -1,14 +1,14 @@
 footer{
   position: relative;
-  height: 55vh;
+  height: clamp(20vh, 25vw, 45vh);
   background: var(--bg-dark2);
-  overflow: hidden;
+  overflow: hidden;  
 }
 footer .footer-background{
   font-family: var(--font-bold);
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 57%;
   transform: translate(-50%, -50%);  
   transform-origin: right bottom;
   font-size: clamp(10vw, 39vw, 50vw);
@@ -20,4 +20,45 @@ footer .footer-background{
   vertical-align: bottom;
   display: inline-block;
   line-height: 1;
+}
+.footer{
+  display: flex;
+  color: var(--text-light);  
+  justify-content: space-between;
+  padding:60px 80px;
+  gap: 50px;
+}
+.footer .footer-nav{
+  display: flex;
+  gap: 50px;
+  margin-right: 80px;
+}
+.footer .logo h2{
+  font-family: var(--font-bold);
+  font-size: 5rem;
+}
+.footer .footer-nav .footer-heading{
+  font-family: var(--font-bold);
+  font-size: 2rem;
+  margin-bottom: 25px;
+}
+.footer .footer-nav ul li{
+  position: relative;
+  font-size: .9rem;
+  margin: 12px 0;  
+  width: fit-content;
+  font-weight: 600;
+}
+.footer .footer-nav ul li::after {
+  content: '';
+  position: absolute;
+  height: 2px;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  background: var(--text-light);
+  transition: width .2s ease-in-out;
+}
+.footer .footer-nav ul li:hover::after {
+  width: 100%;
 }

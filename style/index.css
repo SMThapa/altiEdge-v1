@@ -28,17 +28,27 @@
     font-family: "Montserrat", sans-serif;        
 }
 html,body{
-    background: var(--bg-light);
+    background: var(--bg-light);    
+    scroll-behavior: smooth;
 }
-section{
+section, footer{
     /* min-height: 700px; */
-    width: 100%;    
+    width: 100%;            
 }
 section.bgDark{
     background: var(--bg-dark);
 }
 section.bgLight{
     background: var(--bg-light);
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+ul li{
+    list-style: none;
 }
 
 .sectionTitle{
