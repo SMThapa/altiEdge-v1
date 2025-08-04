@@ -33,3 +33,18 @@ nextButton.onclick = function() {
   console.log('Next button clicked!');
   swiper.slideNext(); // Swiper API to go to the next slide
 };
+
+
+let lastScrollY = window.scrollY;
+const nav = document.querySelector('nav');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > lastScrollY) {
+    // Scrolling down
+    nav.style.top = '-80px'; // Hide nav (matches nav height)
+  } else {
+    // Scrolling up
+    nav.style.top = '0';
+  }
+  lastScrollY = window.scrollY;
+});

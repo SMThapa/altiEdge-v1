@@ -2,52 +2,66 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Footer with Background Text</title>
+  <title>Hide Navbar on Scroll Demo</title>
   <style>
     body {
       margin: 0;
-      padding: 0;
-      background: #111;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
+      font-family: Arial, sans-serif;
     }
-    .footer-section {
-      height: 40vh;
-      position: relative;
-      background: #222;
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: #333;
       color: #fff;
-      padding: 60px 0 40px 0;
-      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      z-index: 1000;
+      transition: top 0.3s;
     }
-    .footer-bg-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 10vw;
-      font-weight: bold;
-      color: rgba(255,255,255,0.05);
-      white-space: nowrap;
-      pointer-events: none;
-      user-select: none;
-      z-index: 1;
-      letter-spacing: .1em;
+    section {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
     }
-    .footer-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-    }
+    .section1 { background: #f7b267; }
+    .section2 { background: #7ebc89; }
+    .section3 { background: #6699cc; }
   </style>
 </head>
 <body>
-  <footer class="footer-section">
-    <div class="footer-bg-text">altiedge</div>
-    <div class="footer-content">
-      <p>&copy; 2025 Altiedge. All rights reserved.</p>
-    </div>
-  </footer>
+  <nav>
+    Sticky Navbar
+  </nav>
+  <section class="section1">
+    Section 1
+  </section>
+  <section class="section2">
+    Section 2
+  </section>
+  <section class="section3">
+    Section 3
+  </section>
+  <script>
+    let lastScrollY = window.scrollY;
+    const nav = document.querySelector('nav');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > lastScrollY) {
+        // Scrolling down
+        nav.style.top = '-60px'; // Hide nav (matches nav height)
+      } else {
+        // Scrolling up
+        nav.style.top = '0';
+      }
+      lastScrollY = window.scrollY;
+    });
+  </script>
 </body>
 </html>
