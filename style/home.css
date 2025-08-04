@@ -5,7 +5,7 @@
     width: 100%;    
     overflow: hidden;
 }
-.heroBanner img{
+.heroBanner img{    
     height: 100%;
     width: 100%;
     object-fit: cover;    
@@ -62,7 +62,7 @@
 }
 .aboutSection .aboutSectionImages .image1{
     height: 100%;
-    filter: brightness(.75);
+    filter: brightness(.9);
     position: relative;    
 }
 .aboutSection .aboutSectionImages img{
@@ -84,7 +84,7 @@
     margin-bottom: 75px;
 }
 .aboutSection .aboutSectionParagraph1 > div{
-    margin-left: 45%;
+    margin-left: 55%;
     width: 600px;    
 }
 .aboutSection .aboutSectionParagraph1 h2{
@@ -158,7 +158,7 @@
 }
 .usp .swiper-slide .slide-desc{        
     position: absolute;
-    bottom: -10%;
+    bottom: 0%;
     left: 50%;
     transform: translateX(-50%);
     width: 80%;
