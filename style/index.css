@@ -79,7 +79,7 @@ section .colorLight{
 /* whats app icon */
 .whatsAppIcon{
     position: fixed;
-    bottom: 60px;
+    bottom: 50px;
     right: 60px;        
     z-index: 10;
     display: flex;
@@ -242,3 +242,46 @@ section .colorLight{
     cursor: grabbing;
 }
 /* swiper js end*/
+
+
+section .pageBanner{
+    position: relative;
+    height: 700px;    
+    overflow: hidden;
+}
+section .pageBanner img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: 100% 5%;
+    filter: brightness(.8);
+}
+section .pageBanner .bannerText{
+    position: absolute;
+    top: 60%;    
+    left: 100px;    
+    transform: translateY(-50%);
+    width: calc(100% - 200px);
+    z-index: 5;    
+    color: white;
+}
+section .pageBanner .bannerText .bannerTitle{
+    font-size: clamp(1.5rem, 50vw, 6rem);
+    font-family: var(--font-bold);
+    line-height: 1;        
+    max-width: clamp(300px, 50vw, 700px);    
+}
+section .pageBanner .bannerText .bannerDesc{
+    max-width: 50%;
+    font-size: clamp(.9rem, 20vw, 1.05rem);
+}
+section .pageBanner h2{
+    font-family: var(--font-bold);
+    color: var(--text-light);    
+    margin-right: 25px;
+    margin-bottom: 18px;
+    font-weight: 300;
+}
+section .pageContents{
+    padding: 120px 15px 80px;
+}

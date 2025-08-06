@@ -1,0 +1,71 @@
+.readinessPage .pageContents{
+    max-width: 1600px;
+    width: 100%;
+    margin: 0 auto;    
+}
+.detailedSteps .step{
+    min-height: 400px;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;    
+    margin-bottom: 25px;        
+}
+.detailedSteps .step img{
+    height: 500px;
+    width: 100%;
+    object-fit: cover;    
+}
+.step-contents{
+    position: relative;       
+    padding-left: 8%;
+    padding-top: 25px;
+}
+.detailedSteps .step .stepTitle{
+    font-family: var(--font-bold);
+    font-size: var(--font-size3);
+    line-height: 1;      
+    color: var(--text-dark);    
+    width: clamp(200px, 25vw, 300px);
+    margin-left: auto;
+    text-align: right;
+    margin-bottom: 55px;
+    z-index: 5;
+    margin-right: 20%;
+}
+.detailedSteps .step .stepDesc{
+    width: 55%;
+    /* margin-left: 10%; */
+}
+.detailedSteps .step .stepNo{
+    font-family: var(--font-bold);
+    position: absolute;
+    top: 15%;
+    /* left: 10%; */
+    transform: translateY(-50%);
+    font-size: 8rem;
+    z-index: 1;
+    opacity: .1;
+    line-height: 1;
+    font-weight: 500;
+}
+.detailedSteps .step:nth-child(even) .step-contents{
+    order: 1;    
+    padding-left: 0;
+    padding-right: 8%;
+    padding-top: 25px;
+}
+.detailedSteps .step:nth-child(even) .step-contents .stepTitle{
+    margin: 0 0 45px 20%;
+    text-align: left;
+}
+.detailedSteps .step:nth-child(even) .step-contents .stepDesc{
+    margin-left: auto;
+    text-align: right;
+}
+.detailedSteps .step:nth-child(even) img{
+    order: 2;
+}
+.detailedSteps .step:nth-child(even) .stepNo{
+    right: 8%;
+}
